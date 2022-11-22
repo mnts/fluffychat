@@ -36,7 +36,7 @@ class _FractalCryptoState extends State<FractalCrypto> {
               context,
             ),
           )
-        : Text('No Crypto address');
+        : Container();
   }
 
   fetchEth() async {
