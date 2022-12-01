@@ -64,15 +64,17 @@ class LoginController extends State<Login> {
       } else {
         identifier = AuthenticationUserIdentifier(user: username);
       }
-      await matrix.getLoginClient().login(LoginType.mLoginPassword,
-          identifier: identifier,
-          // To stay compatible with older server versions
-          // ignore: deprecated_member_use
-          user: identifier.type == AuthenticationIdentifierTypes.userId
-              ? username
-              : null,
-          password: passwordController.text,
-          initialDeviceDisplayName: PlatformInfos.clientName);
+      await matrix.getLoginClient().login(
+            LoginType.mLoginPassword,
+            identifier: identifier,
+            // To stay compatible with older server versions
+            // ignore: deprecated_member_use
+            user: identifier.type == AuthenticationIdentifierTypes.userId
+                ? username
+                : null,
+            password: passwordController.text,
+            initialDeviceDisplayName: PlatformInfos.clientName,
+          );
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
       return setState(() => loading = false);
